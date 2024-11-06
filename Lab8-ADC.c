@@ -34,10 +34,13 @@ unsigned long MillisecondCounter = 0;
 // Interrupt Service Routine for Timer32-1
 void Timer32_1_ISR(void)
 {
-	char temp[64];
+	char BPMBuf[32];
 	unsigned int analogIn = 0;
-	double tempIn = 0;
-	double Vout = 0;	
+	double BPM = 0.0;
+	double Vout = 0.0;	
+	double VoutThreshhold = 1000.0; 				//Idk how this will need to be measured
+	static BOOLEAN Timer1RunningFlag = FALSE;
+	unsigned long MillisecondCounter = 0; 			//not float, need to change?
 	
 	analogIn = ADC_In();
 	
@@ -53,22 +56,44 @@ void Timer32_1_ISR(void)
 //	uart0_put("\r\n");	
 
 	
-	//Print degrees Celsius
-	Vout = (2.5 * analogIn) / (pow(2.0, 14.0)-1.0);
+	//Print BPM
+	Vout = (2.5 * analogIn) / (pow(2.0, 14.0)-1.0);  //What this do?
 	//Vout = analogIn;
-	tempIn = Vout * 10;		//10mV to V
-	uart0_put("\n\rTemp Celsuis: ");
-	sprintf(temp, "%f", tempIn);
-	uart0_put(temp);
-	
-	//Print degrees Farenheit
-	tempIn = (tempIn * 9.0 / 5.0) + 32.0;
-	uart0_put("\n\rTemp Farenheit: ");
-	sprintf(temp, "%f", tempIn);
-	uart0_put(temp);
-	uart0_put("\r\n");
 
+	//voltage went past threshhold, indicating a pulse
+	if ((Vout>VoutThreshhold) && !timerStart){
+		//start timer
+		Timer1RunningFlag = true;
+		while(Timer1RunningFlag){
+
+			MillisecondCounter++
+
+			//end timer at next pulse
+			if((Vout>VoutThreshhold) && timerStart){
+			Timer1RunningFlag = false;
+
+			//divide 1min by time measured (make sure units match)
+			BPM = 60000.0 / MillisecondCounter ;
+
+			//reset timer
+			MillisecondCounter = 0;
+			}
+
+		}
+	}
+
+	//print BPM to PuTTY
+	//tempIn = Vout * 10;		//10mV to V this needed?
+	uart0_put("\n\rBPM: ");
+	sprintf(BPMBuf, "%f", BPM);
+	uart0_put(BPMBuf);
+	for (i = 0; i < 32; i++) {
+				BPMBuf[i] = NULL;
+		}
 }
+
+
+
 int main(void)
 {
 	//char temp[64];
