@@ -27,48 +27,70 @@
 BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;
 
-double pulses = 0;
+int pulses = 0;
+int BPM = 0;
+BOOLEAN high = FALSE;
+double VoutThreshhold = 6600.0; 				//measured lowest height of the lowest frequency input
+int beats0 = 0;
+int beats1 = 0;
+int beats2 = 0;
+int beats3 = 0;
+BOOLEAN firstBPM = TRUE;
 
 // Interrupt Service Routine for Timer32-1
 void Timer32_1_ISR(void)
 {
 	char temp[64];
 	unsigned int analogIn = 0;
-	double VoutThreshhold = 6600.0; 				//measured lowest height of the lowest frequency input
 	
 	analogIn = ADC_In();
-	
-	//Print decimal
-	uart0_put("\n\rDecimal Value: ");
-	sprintf(temp, "%i", analogIn);
-	uart0_put(temp);
 
 	//voltage went past threshhold, indicating a pulse
-	if ((analogIn>VoutThreshhold)){
-		//pulse has occured
+	if ((analogIn>VoutThreshhold) && high == FALSE){
+		//pulse is occuring
+		high = TRUE;
+	}
+	if ((analogIn<VoutThreshhold) && high == TRUE){
+		//pulse has ended
 		pulses++;
+		high = FALSE;
 	}
 	
+//	uart0_put("\n\r     Pulses: ");
+//	sprintf(temp, "%i", pulses);
+//	uart0_put(temp);
+//	uart0_put("     ");
+//	sprintf(temp, "%i", analogIn);
+//	uart0_put(temp);
 }
 // Interrupt Service Routine for Timer32-1
 void Timer32_2_ISR(void)
 {
 	char temp[64];
-	double BPM = 0.0;
-	
-	//Should be even, so combine rising and falling edges
-	pulses = pulses / 2;
-	
-	//TODO
 	//divide pulses by time unit
-	BPM = pulses / 60000.0 ;
+	//BPM = (BPM + (pulses * 60.0 / 5.0) ;
+	//BPM = (pulses * 12.0);
 	
-	//TODO
+	if (firstBPM) {
+		beats0 = pulses * 12.0;
+		beats1 = pulses * 12.0;
+//		beats2 = pulses * 24.0;
+//		beats3 = pulses * 24.0;
+		firstBPM = FALSE;
+	}
+	
+	BPM = (beats0 + beats1 + (pulses * 12.0)) / 3.0;	
+//	beats3 = beats2;
+//	beats2 = beats1;
+	beats1 = beats0;
+	beats0 = BPM;
+		
 	//print BPM to PuTTY
-	//tempIn = Vout * 10;		//10mV to V this needed?
 	uart0_put("\n\rBPM: ");
-	sprintf(temp, "%f", BPM);
+	sprintf(temp, "%i", BPM);
 	uart0_put(temp);
+	
+	pulses = 0;
 	
 }
 int main(void)
@@ -78,7 +100,7 @@ int main(void)
 	uart0_put("\r\nLab8 ADC demo\r\n");
 
 	Timer32_1_Init(&Timer32_1_ISR, CalcPeriodFromFrequency(10), T32DIV1); // initialize Timer A32-1;
-	Timer32_2_Init(&Timer32_2_ISR, CalcPeriodFromFrequency(2), T32DIV1);		// initialize Timer A32-2
+	Timer32_2_Init(&Timer32_2_ISR, CalcPeriodFromFrequency(0.2), T32DIV1);		// initialize Timer A32-2
 
 	LED1_Init();
 	LED2_Init();

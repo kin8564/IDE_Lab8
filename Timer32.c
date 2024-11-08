@@ -21,7 +21,7 @@ unsigned long CalcPeriodFromFrequency (double Hz)
 {
 	double period = 0.0;
 	period = (double)SystemCoreClock/Hz;	//SystemCoreClock is 48MHz (48,000,000)
-	period = period / 2.0;   // we divide by 2 because we want an interrupt for both the rising edge and the falling edge
+	period = period;   // No longer divide by two, only care about matching edges
 	return (unsigned long) period;
 }
 

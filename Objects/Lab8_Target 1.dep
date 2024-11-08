@@ -14,7 +14,7 @@ I (C:\Users\kings\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu
 I (C:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h)(0x5B69EB36)
 I (uart.h)(0x66ED8A6C)
 I (Common.h)(0x66CF31AA)
-F (.\Timer32.c)(0x66FFF4C2)(-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\kings\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\timer32.o --omf_browse .\objects\timer32.crf --depend .\objects\timer32.d)
+F (.\Timer32.c)(0x672E6CCA)(-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\kings\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\timer32.o --omf_browse .\objects\timer32.crf --depend .\objects\timer32.d)
 I (C:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h)(0x5B69EB34)
 I (C:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h)(0x5B69EB34)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC81EBC)
@@ -75,7 +75,7 @@ I (C:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\
 I (Common.h)(0x66CF31AA)
 I (CortexM.h)(0x6245F526)
 I (ADC14.h)(0x6245F526)
-F (.\Lab8-ADC.c)(0x672E2382)(-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\kings\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\lab8-adc.o --omf_browse .\objects\lab8-adc.crf --depend .\objects\lab8-adc.d)
+F (.\Lab8-ADC.c)(0x672E785C)(-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Users\kings\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\kings\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include-D__UVISION_VERSION="531" -D_RTE_ -D_RTE_ -D__MSP432P401R__ -D__MSP432P401R__-o .\objects\lab8-adc.o --omf_browse .\objects\lab8-adc.crf --depend .\objects\lab8-adc.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5EC81EBC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5EC81EBC)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5EC81EC4)

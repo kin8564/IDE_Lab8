@@ -28,14 +28,12 @@ Project File Date:  11/06/2024
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling Lab8-ADC.c...
-Lab8-ADC.c(59): error:  #65: expected a ";"
-  			if((Vout>VoutThreshhold) && Timer1RunningFlag){
-Lab8-ADC.c(69): warning:  #12-D: parsing restarts here after previous syntax error
-  		}
-Lab8-ADC.c(75): error:  #20: identifier "BPM" is undefined
-  	sprintf(temp, "%f", BPM);
-Lab8-ADC.c: 1 warning, 2 errors
-".\Objects\Lab8.axf" - 2 Error(s), 1 Warning(s).
+Lab8-ADC.c(43): warning:  #177-D: variable "temp"  was declared but never referenced
+  	char temp[64];
+Lab8-ADC.c: 1 warning, 0 errors
+linking...
+Program Size: Code=5460 RO-data=356 RW-data=80 ZI-data=1120  
+".\Objects\Lab8.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,13 +59,12 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: TexasInstruments::Device:Startup:3.2.2
-      Source file:   Device\Source\startup_msp432p401r_uvision.s
       Include file:  Device\Include\msp_compatibility.h
-      Source file:   Examples\EmptyMain\main.c
+      Source file:   Device\Source\startup_msp432p401r_uvision.s
       Source file:   Examples\BlinkLED\blinkLED.c
       Source file:   Device\Source\system_msp432p401r.c
-Target not created.
-Build Time Elapsed:  00:00:01
+      Source file:   Examples\EmptyMain\main.c
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>
